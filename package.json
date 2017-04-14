@@ -1,0 +1,29 @@
+{
+  "name": "hash-teller-fe",
+  "version": "0.0.1",
+  "description": "Frontend part of a hash-teller project flex",
+  "main": "index.html",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AntonNarkevich/hash-teller-fe.git"
+  },
+  "keywords": [
+    "webpack",
+    "bootstrap",
+    "es6",
+    "frontend"
+  ],
+  "author": "antonio.narkevich@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AntonNarkevich/hash-teller-fe/issues"
+  },
+  "homepage": "https://github.com/AntonNarkevich/hash-teller-fe#readme",
+  "dependencies": {
+    "bootstrap": "4.0.0-alpha.6",
+    "font-awesome": "^4.7.0"
+  }
+}

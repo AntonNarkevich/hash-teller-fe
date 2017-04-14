@@ -1,0 +1,15 @@
+.progress-purple {
+    background-color: #9d7dc9 !important;
+}
+
+.tag {
+    color: #9d7dc9;
+}
+
+.free-badge:hover {
+    background-color: #5cb85c;
+}
+
+.content-wrap {
+    min-height: 560px;
+}
