@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import * as _ from 'lodash';
+import {isNumber} from 'lodash';
 import './loading-bar.less';
 
 export class LoadingBar extends React.Component {

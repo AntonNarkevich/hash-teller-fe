@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import * as _ from 'lodash';
+import {get} from 'lodash';
 import {GlobalNavigation} from '../global-navigation/global-navigation.jsx';
 import {GlobalFooter} from '../global-footer/global-footer.jsx';
 import {SignIn} from '../signin/signin.jsx';
@@ -46,7 +46,7 @@ Application = connect(
 	state => {
 		return {
 			user: state.user,
-			tags: _.get(state, 'upload.tags')
+			tags: get(state, 'upload.tags')
 		}
 	}
 )(Application);

@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
 	entry: ["babel-polyfill", './app/index.js'],
@@ -22,9 +23,7 @@ module.exports = {
 					presets: ['es2015', 'react'],
 					plugins: [
 						'transform-class-properties',
-						'transform-object-rest-spread',
-						'transform-async-to-generator',
-						'transform-regenerator'
+						'transform-object-rest-spread'
 					]
 				}
 			},
@@ -55,5 +54,6 @@ module.exports = {
 				loader: 'url-loader?limit=100000'
 			}
 		]
-	}
+	},
+	plugins:[new BundleAnalyzerPlugin()]
 };

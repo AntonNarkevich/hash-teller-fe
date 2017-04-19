@@ -8,7 +8,7 @@ import store from './store.js';
 import {Application} from './components/application/application.jsx';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import '../node_modules/font-awesome/css/font-awesome.min.css'
+import '../fonts/fontello/css/fontello.css';
 
 registerLoginCallback();
 

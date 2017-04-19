@@ -6,7 +6,7 @@ export class GitHubLink extends React.Component {
 	render() {
 		return (
 			<a className="nav-link" href={`https://github.com/AntonNarkevich/${this.props.repoName}`} target="_blank">
-				<i className="fa fa-github-alt fa-inverse align-text-top" aria-hidden="true" />
+				<i className="icon-github"></i>
 				<span>GitHub</span>
 			</a>
 		);

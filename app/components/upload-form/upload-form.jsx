@@ -4,7 +4,7 @@ import React from 'react';
 import {ImagePreview} from './image-preview/image-preview.jsx'
 import {LoadingBar} from './loading-bar/loading-bar.jsx'
 import {connect} from 'react-redux';
-import * as _ from 'lodash';
+import {get} from 'lodash';
 import * as actionCreators from '../../action-creators.js';
 import './upload-form.less';
 
@@ -94,9 +94,9 @@ let UploadForm = class extends React.Component {
 UploadForm = connect(
 	state => {
 		return {
-			previewImageSrc: _.get(state, 'upload.previewImageSrc'),
-			file: _.get(state, 'upload.file'),
-			percent: _.get(state, 'upload.percent')
+			previewImageSrc: get(state, 'upload.previewImageSrc'),
+			file: get(state, 'upload.file'),
+			percent: get(state, 'upload.percent')
 		}
 	},
 	dispatch => {
