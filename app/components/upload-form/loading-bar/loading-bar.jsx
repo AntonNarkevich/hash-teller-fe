@@ -1,0 +1,22 @@
+'use strict';
+
+import React from 'react';
+import * as _ from 'lodash';
+import './loading-bar.less';
+
+export class LoadingBar extends React.Component {
+	render() {
+		return (
+			<div className="progress mb-2">
+				<div className="progress-bar progress-bar-striped progress-purple progress-bar-animated"
+					 role="progressbar"
+					 style={{width: `${this.props.percent || 0}%`}}>
+
+					{_.isNumber(this.props.percent) && this.props.percent !== 0 && (
+						<span>{this.props.percent === 100 ? 'Getting the tags...' : `${this.props.percent}%`}</span>
+					)}
+				</div>
+			</div>
+		);
+	}
+}
