@@ -1,6 +1,6 @@
 {
   "name": "hash-teller-fe",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Frontend part of a hash-teller project flex",
   "main": "index.html",
   "scripts": {
