@@ -8,7 +8,7 @@ export const HeroUnit = () => (
 			Instagram <span className="tag">#</span>tags you were
 			missing!
 		</h2>
-		<p className="mb-5">
+		<p className="mb-4">
 			Don't know which tags to use? Let us help you! Upload it below and we'll find the perfect ones in 2 simple steps.
 			It is free.
 		</p>
