@@ -1,6 +1,6 @@
 {
   "name": "hash-teller-fe",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Frontend part of a hash-teller project flex",
   "main": "index.html",
   "scripts": {
@@ -13,9 +13,10 @@
   },
   "keywords": [
     "webpack",
-    "bootstrap",
     "es6",
-    "frontend"
+    "frontend",
+    "react",
+    "redux"
   ],
   "author": "antonio.narkevich@gmail.com",
   "license": "ISC",
@@ -37,9 +38,11 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.3",
     "lodash": "^4.17.4",
+    "material-ui": "^0.17.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
+    "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",
     "style-loader": "^0.16.1",
     "url-loader": "^0.5.8",

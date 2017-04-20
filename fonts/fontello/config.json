@@ -11,6 +11,12 @@
       "css": "github",
       "code": 61715,
       "src": "fontawesome"
+    },
+    {
+      "uid": "2a6740fc2f9d0edea54205963f662594",
+      "css": "spin3",
+      "code": 59442,
+      "src": "fontelico"
     }
   ]
 }

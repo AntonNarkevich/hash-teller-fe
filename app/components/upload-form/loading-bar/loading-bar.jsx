@@ -13,7 +13,7 @@ export class LoadingBar extends React.Component {
 					 style={{width: `${this.props.percent || 0}%`}}>
 
 					{_.isNumber(this.props.percent) && this.props.percent !== 0 && (
-						<span>{this.props.percent === 100 ? 'Getting the tags...' : `${this.props.percent}%`}</span>
+						<span>{this.props.label || `${this.props.percent}%`}</span>
 					)}
 				</div>
 			</div>

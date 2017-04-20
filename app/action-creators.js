@@ -25,3 +25,26 @@ export const loadingProgress = percent => {
 		percent
 	}
 };
+
+export const labelSelectionToggled = (name, isSelected) => {
+	return {
+		type: 'LABEL_SELECTED_TOGGLED',
+		isSelected,
+		name
+	}
+};
+
+export const labelsLoaded = (rekognitionData) => {
+	let labels = rekognitionData.Labels.map(l => ({name: l.Name}));
+
+	return {
+		type: 'LABELS_LOADED',
+		labels
+	};
+};
+
+export const tagsLoadingStarted = () =>{
+	return {
+		type: 'TAGS_LOADING_STARTED'
+	};
+};

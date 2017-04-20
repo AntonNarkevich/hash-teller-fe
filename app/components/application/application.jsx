@@ -9,14 +9,15 @@ import {SignIn} from '../signin/signin.jsx';
 import {UploadForm} from '../upload-form/upload-form.jsx';
 import {HeroUnit} from '../hero-unit/hero-unit.jsx'
 import {TagsOutput} from '../tags-output/tags-output.jsx'
+import {LabelsSelector} from '../labels-selector/labels-selector.jsx';
 
 import './application.less'
 
 let Application = ({
 	user,
 	tags
-}) =>
-	(
+}) => {
+	return (
 		<div className="container">
 			<GlobalNavigation />
 
@@ -30,8 +31,10 @@ let Application = ({
 						<div className="row">
 							<UploadForm />
 
-							{tags && (
-								<TagsOutput tags={tags} />
+							<LabelsSelector />
+
+							{!!(tags && tags.length) && (
+								<TagsOutput tags={tags}/>
 							)}
 						</div>
 					)}
@@ -41,6 +44,7 @@ let Application = ({
 			<GlobalFooter contactEmail="antonio.narkevich@gmail.com" contactName="Antonio Narkevich"/>
 		</div>
 	);
+};
 
 Application = connect(
 	state => {

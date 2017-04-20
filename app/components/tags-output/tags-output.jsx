@@ -8,7 +8,7 @@ export const TagsOutput = ({
 }) => {
 	return (
 		<div>
-			<h4>Here we go:</h4>
+			<h4 className="mb-2">Here we go:</h4>
 			<code className="d-block">{(tags || []).map((t, index) => <span key={index}>#{t} </span>)}</code>
 		</div>
 	);
