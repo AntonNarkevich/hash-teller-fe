@@ -14,7 +14,7 @@ let GlobalNavigation = ({
 		<nav className="navbar navbar-toggleable-md navbar-inverse bg-inverse mb-3">
 			<a className="navbar-brand" href="#">
 				<img src="img/logo.png" width="30" height="30" className="d-inline-block align-top" alt=""/>
-				Hash Teller
+				HashTeller
 			</a>
 
 			<div className="collapse navbar-collapse">
