@@ -106,6 +106,7 @@ let UploadForm = class extends React.Component {
 
 						<form className="form-inline">
 							<input type="file" className="form-control-file col-md-7"
+								   accept='image/*'
 								   onChange={previewImage}/>
 							<button type="button" className="btn btn-secondary col"
 									disabled={!this.props.file || (this.props.percent > 0 && this.props.percent < 100) || this.props.tagsLoadingProgress} onClick={startUpload}>
