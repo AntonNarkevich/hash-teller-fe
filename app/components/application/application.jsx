@@ -50,7 +50,7 @@ Application = connect(
 	state => {
 		return {
 			user: state.user,
-			tags: get(state, 'upload.tags')
+			tags: get(state, 'tagsData.tags')
 		};
 	}
 )(Application);

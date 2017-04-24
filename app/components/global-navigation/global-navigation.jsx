@@ -20,7 +20,7 @@ let GlobalNavigation = ({
 			<div className="collapse navbar-collapse">
 				<ul className="navbar-nav mr-auto">
 					<li className="nav-item active">
-						<GitHubLink repoName="hash-teller-lambda"/>
+						<GitHubLink repoName="hash-teller-fe"/>
 					</li>
 				</ul>
 				{user.isSignedIn && (

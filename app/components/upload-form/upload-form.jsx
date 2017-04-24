@@ -89,6 +89,7 @@ let UploadForm = class extends React.Component {
 
 		return (
 			<div className="upload-form-wrap">
+
 				<div className="row mb-3 justify-content-center">
 					<div className="d-inline-flex">
 						<Avatar className="col"
@@ -96,9 +97,11 @@ let UploadForm = class extends React.Component {
 					</div>
 				</div>
 
-				<div className="row align-items-center mb-3">
+				<h4 className="mb-3">Step 1: Upload a photo</h4>
+
+				<div className="row align-items-center mb-4">
 					<div className="col-md-4">
-						<ImagePreview previewImageSrc={this.props.previewImageSrc || 'img/image-placeholder.png'}/>
+						<ImagePreview previewSrc={this.props.previewSrc || 'img/image-placeholder.png'}/>
 					</div>
 
 					<div className="col-md-8">
@@ -123,10 +126,10 @@ let UploadForm = class extends React.Component {
 UploadForm = connect(
 	state => {
 		return {
-			previewImageSrc: get(state, 'upload.previewImageSrc'),
-			tagsLoadingProgress: get(state, 'upload.tagsLoadingProgress'),
-			file: get(state, 'upload.file'),
-			percent: get(state, 'upload.percent'),
+			previewSrc: get(state, 'imageData.previewSrc'),
+			tagsLoadingProgress: get(state, 'tagsData.tagsLoadingProgress'),
+			file: get(state, 'imageData.file'),
+			percent: get(state, 'imageData.uploadPercent'),
 			labels: state.labels
 		};
 	},

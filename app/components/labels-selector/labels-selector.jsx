@@ -67,7 +67,7 @@ let LabelsSelector = ({
 						</div>
 					</div>
 
-					<h4 className="mb-3">Please check what applies to your photo:</h4>
+					<h4 className="mb-4">Step 2: Check what applies and hit the button below</h4>
 
 					<div className="row justify-content-between mb-2">
 						{labels.map((l, index) => (
@@ -90,7 +90,7 @@ let LabelsSelector = ({
 									<i className="icon-spin3 animate-spin"></i>
 								)}
 
-								<span>Get Tags!</span>
+								<span class="btn btn-primary">Get Tags!</span>
 							</button>
 						</div>
 					</div>
@@ -104,8 +104,8 @@ let LabelsSelector = ({
 LabelsSelector = connect(
 	state => ({
 		labels: state.labels,
-		tagsLoadingProgress: get(state, 'upload.tagsLoadingProgress'),
-		tags: get(state, 'upload.tags')
+		tagsLoadingProgress: get(state, 'tagsData.tagsLoadingProgress'),
+		tags: get(state, 'tagsData.tags')
 	}),
 	dispatch => ({
 		labelSelectionToggled: (name, isSelected) => dispatch(actionCreators.labelSelectionToggled(name, isSelected)),

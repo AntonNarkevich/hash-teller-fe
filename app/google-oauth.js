@@ -1,6 +1,7 @@
 'use strict';
 
 import store from './store.js';
+import actions from './actions.js';
 
 export const registerLoginCallback = () => {
 	window.signinCallback = function (authResult) {
@@ -18,7 +19,7 @@ export const registerLoginCallback = () => {
 			AWS.config.credentials.get(() => {
 
 				store.dispatch({
-					type: 'USER_SIGNED_IN',
+					type: actions.USER_SIGNED_IN,
 					user: {
 						name: authResult.w3.ig,
 						email: authResult.w3.U3
