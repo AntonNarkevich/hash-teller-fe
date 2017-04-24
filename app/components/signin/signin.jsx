@@ -10,10 +10,10 @@ export class SignIn extends React.Component {
 				<h4 className="text-center mb-3">Sign in</h4>
 
 				<div className="g-signin2"
-					 data-theme="light"
-					 data-longtitle="true"
-					 data-width="auto"
-					 data-onsuccess="signinCallback"></div>
+					data-theme="light"
+					data-longtitle="true"
+					data-width="auto"
+					data-onsuccess="signinCallback"></div>
 			</div>
 		);
 	}

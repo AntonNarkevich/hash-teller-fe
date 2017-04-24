@@ -16,14 +16,14 @@ export const tagsLoaded = tags => {
 	return {
 		type: 'TAGS_LOADED',
 		tags
-	}
+	};
 };
 
 export const loadingProgress = percent => {
 	return {
 		type: 'LOADING_PROGRESS',
 		percent
-	}
+	};
 };
 
 export const labelSelectionToggled = (name, isSelected) => {
@@ -31,7 +31,7 @@ export const labelSelectionToggled = (name, isSelected) => {
 		type: 'LABEL_SELECTED_TOGGLED',
 		isSelected,
 		name
-	}
+	};
 };
 
 export const labelsLoaded = (rekognitionData) => {

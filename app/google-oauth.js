@@ -23,7 +23,7 @@ export const registerLoginCallback = () => {
 						name: authResult.w3.ig,
 						email: authResult.w3.U3
 					}
-				})
+				});
 			});
 		}
 	};

@@ -40,15 +40,15 @@ let GlobalNavigation = ({
 
 GlobalNavigation = connect(
 	state => {
-		return {user: state.user}
+		return {user: state.user};
 	},
 	dispatch => {
 		return {
 			signOut: () => {
 				googleAuth.signOut();
-				dispatch(actionCreators.signOut())
+				dispatch(actionCreators.signOut());
 			}
-		}
+		};
 	}
 )(GlobalNavigation);
 

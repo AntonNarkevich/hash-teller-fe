@@ -1,8 +1,8 @@
 'use strict';
 
 import React from 'react';
-import {ImagePreview} from './image-preview/image-preview.jsx'
-import {LoadingBar} from './loading-bar/loading-bar.jsx'
+import {ImagePreview} from './image-preview/image-preview.jsx';
+import {LoadingBar} from './loading-bar/loading-bar.jsx';
 import {connect} from 'react-redux';
 import {get} from 'lodash';
 import * as actionCreators from '../../action-creators.js';
@@ -106,8 +106,8 @@ let UploadForm = class extends React.Component {
 
 						<form className="form-inline">
 							<input type="file" className="form-control-file col-md-7"
-								   accept='image/*'
-								   onChange={previewImage}/>
+								accept='image/*'
+								onChange={previewImage}/>
 							<button type="button" className="btn btn-secondary col"
 									disabled={!this.props.file || (this.props.percent > 0 && this.props.percent < 100) || this.props.tagsLoadingProgress} onClick={startUpload}>
 								Start!
@@ -128,20 +128,20 @@ UploadForm = connect(
 			file: get(state, 'upload.file'),
 			percent: get(state, 'upload.percent'),
 			labels: state.labels
-		}
+		};
 	},
 	dispatch => {
 		return {
 			previewImageChanged: (src, file) => {
-				dispatch(actionCreators.fileSelected(src, file))
+				dispatch(actionCreators.fileSelected(src, file));
 			},
 			loadingProgress: percent => {
-				dispatch(actionCreators.loadingProgress(percent))
+				dispatch(actionCreators.loadingProgress(percent));
 			},
 			labelsLoaded: rekognitionData => {
-				dispatch(actionCreators.labelsLoaded(rekognitionData))
+				dispatch(actionCreators.labelsLoaded(rekognitionData));
 			}
-		}
+		};
 	}
 )(UploadForm);
 

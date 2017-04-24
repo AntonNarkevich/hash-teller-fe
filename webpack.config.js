@@ -4,7 +4,7 @@ const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
-	entry: ["babel-polyfill", './app/index.js'],
+	entry: ['babel-polyfill', './app/index.js'],
 	output: {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname, 'dist'),
@@ -14,6 +14,14 @@ module.exports = {
 	module: {
 		rules: [
 			{
+				enforce: 'pre',
+				test: /\.jsx?$/,
+				exclude: /node_modules/,
+				loader: 'eslint-loader',
+				options: {
+					fix: true
+				}
+			}, {
 				test: /\.jsx?$/,
 				include: [
 					path.resolve(__dirname, 'app')
@@ -55,5 +63,5 @@ module.exports = {
 			}
 		]
 	},
-	plugins:[new BundleAnalyzerPlugin()]
+	plugins: [new BundleAnalyzerPlugin({analyzerMode: 'disabled'})]
 };

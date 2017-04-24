@@ -7,11 +7,11 @@ import {GlobalNavigation} from '../global-navigation/global-navigation.jsx';
 import {GlobalFooter} from '../global-footer/global-footer.jsx';
 import {SignIn} from '../signin/signin.jsx';
 import {UploadForm} from '../upload-form/upload-form.jsx';
-import {HeroUnit} from '../hero-unit/hero-unit.jsx'
-import {TagsOutput} from '../tags-output/tags-output.jsx'
+import {HeroUnit} from '../hero-unit/hero-unit.jsx';
+import {TagsOutput} from '../tags-output/tags-output.jsx';
 import {LabelsSelector} from '../labels-selector/labels-selector.jsx';
 
-import './application.less'
+import './application.less';
 
 let Application = ({
 	user,
@@ -51,7 +51,7 @@ Application = connect(
 		return {
 			user: state.user,
 			tags: get(state, 'upload.tags')
-		}
+		};
 	}
 )(Application);
 

@@ -9,10 +9,10 @@ export class LoadingBar extends React.Component {
 		return (
 			<div className="progress mb-2">
 				<div className="progress-bar progress-bar-striped progress-purple progress-bar-animated"
-					 role="progressbar"
-					 style={{width: `${this.props.percent || 0}%`}}>
+					role="progressbar"
+					style={{width: `${this.props.percent || 0}%`}}>
 
-					{_.isNumber(this.props.percent) && this.props.percent !== 0 && (
+					{isNumber(this.props.percent) && this.props.percent !== 0 && (
 						<span>{this.props.label || `${this.props.percent}%`}</span>
 					)}
 				</div>

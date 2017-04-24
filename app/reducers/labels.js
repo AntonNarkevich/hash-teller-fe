@@ -3,8 +3,9 @@
 import {cloneDeep, take, forEach} from 'lodash';
 
 export const labels = (state = [], action) => {
+
 	switch (action.type) {
-	case 'LABELS_LOADED':
+	case 'LABELS_LOADED': {
 		let labels = cloneDeep(action.labels);
 
 		//Select first 3 by default
@@ -13,8 +14,8 @@ export const labels = (state = [], action) => {
 		});
 
 		return labels;
-
-	case 'LABEL_SELECTED_TOGGLED':
+	}
+	case 'LABEL_SELECTED_TOGGLED': {
 		let labelIndex = state.findIndex(l => l.name === action.name);
 		if (labelIndex !== -1) {
 			let label = state[labelIndex];
@@ -30,7 +31,7 @@ export const labels = (state = [], action) => {
 		}
 
 		return state;
-
+	}
 	default:
 		return state;
 	}

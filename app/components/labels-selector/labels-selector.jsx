@@ -62,7 +62,8 @@ let LabelsSelector = ({
 				<div>
 					<div className="row mb-3 justify-content-center">
 						<div className="d-inline-flex">
-							<Avatar className="col" backgroundColor={(tags && tags.length) ? themeColor : null}>2/2</Avatar>
+							<Avatar className="col"
+									backgroundColor={(tags && tags.length) ? themeColor : null}>2/2</Avatar>
 						</div>
 					</div>
 
@@ -72,9 +73,9 @@ let LabelsSelector = ({
 						{labels.map((l, index) => (
 							<div className="label-wrap" key={index}>
 								<Checkbox label={l.name}
-										  onCheck={() => labelSelectionToggled(l.name, !l.isSelected)}
-										  checked={l.isSelected}
-										  iconStyle={{fill: themeColor}}/>
+										onCheck={() => labelSelectionToggled(l.name, !l.isSelected)}
+										checked={l.isSelected}
+										iconStyle={{fill: themeColor}}/>
 							</div>
 						))}
 					</div>
@@ -110,7 +111,7 @@ LabelsSelector = connect(
 		labelSelectionToggled: (name, isSelected) => dispatch(actionCreators.labelSelectionToggled(name, isSelected)),
 		tagsLoaded: tags => dispatch(actionCreators.tagsLoaded(tags)),
 		tagsLoadingStarted: () => dispatch(actionCreators.tagsLoadingStarted())
-	}))
-(LabelsSelector);
+	})
+)(LabelsSelector);
 
 export {LabelsSelector};
