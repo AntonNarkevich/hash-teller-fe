@@ -113,7 +113,7 @@ let UploadForm = class extends React.Component {
 								onChange={previewImage}/>
 							<button type="button" className="btn btn-secondary col"
 									disabled={!this.props.file || (this.props.percent > 0 && this.props.percent < 100) || this.props.tagsLoadingProgress} onClick={startUpload}>
-								Start!
+								Start
 							</button>
 						</form>
 					</div>
