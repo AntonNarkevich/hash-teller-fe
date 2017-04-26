@@ -1,14 +1,14 @@
 'use strict';
 
 const path = require('path');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
 	entry: ['babel-polyfill', './app/index.js'],
 	output: {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname, 'dist'),
-		publicPath: 'dist',
+		publicPath: 'dist'
 	},
 	devtool: 'inline-source-map',
 	module: {
@@ -21,11 +21,10 @@ module.exports = {
 				options: {
 					fix: true
 				}
-			}, {
+			},
+			{
 				test: /\.jsx?$/,
-				include: [
-					path.resolve(__dirname, 'app')
-				],
+				include: [path.resolve(__dirname, 'app')],
 				loader: 'babel-loader',
 				options: {
 					presets: ['es2015', 'react'],
@@ -41,7 +40,7 @@ module.exports = {
 					'style-loader',
 					{
 						loader: 'css-loader',
-						options: {importLoaders: 1}
+						options: { importLoaders: 1 }
 					},
 					'less-loader'
 				]
@@ -53,7 +52,7 @@ module.exports = {
 					'style-loader',
 					{
 						loader: 'css-loader',
-						options: {importLoaders: 1}
+						options: { importLoaders: 1 }
 					}
 				]
 			},
@@ -63,5 +62,5 @@ module.exports = {
 			}
 		]
 	},
-	plugins: [new BundleAnalyzerPlugin({analyzerMode: 'disabled'})]
+	plugins: [new BundleAnalyzerPlugin({ analyzerMode: 'disabled' })]
 };

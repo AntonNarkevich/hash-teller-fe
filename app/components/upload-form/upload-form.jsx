@@ -1,20 +1,20 @@
 'use strict';
 
 import React from 'react';
-import {ImagePreview} from './image-preview/image-preview.jsx';
-import {LoadingBar} from './loading-bar/loading-bar.jsx';
-import {connect} from 'react-redux';
-import {get} from 'lodash';
+import { ImagePreview } from './image-preview/image-preview.jsx';
+import { LoadingBar } from './loading-bar/loading-bar.jsx';
+import { connect } from 'react-redux';
+import { get } from 'lodash';
 import * as actionCreators from '../../action-creators.js';
 import './upload-form.less';
 import Avatar from 'material-ui/Avatar';
-import {themeColor} from '../../constants.js';
+import { themeColor } from '../../constants.js';
 
 let UploadForm = class extends React.Component {
 	render() {
 		const self = this;
 
-		const previewImage = function (event) {
+		const previewImage = function(event) {
 			let fileReader = new FileReader();
 			let file = event.target.files[0];
 			fileReader.readAsDataURL(file);
@@ -26,7 +26,7 @@ let UploadForm = class extends React.Component {
 		};
 
 		const startUpload = () => {
-			const {file, loadingProgress} = this.props;
+			const { file, loadingProgress } = this.props;
 
 			const bucketName = 'instagram-hastag-generator';
 			let bucket = new AWS.S3({
@@ -43,40 +43,43 @@ let UploadForm = class extends React.Component {
 				ACL: 'public-read'
 			};
 
-			bucket.putObject(params).on('httpUploadProgress', function (progress) {
-				let percent = Math.ceil((progress.loaded / progress.total) * 100);
-				loadingProgress(percent);
-			}).send((err) => {
-				if (err) {
-					console.error(err);
-
-					return;
-				}
-
-				const params = {
-					Image: {
-						S3Object: {
-							Bucket: bucketName,
-							Name: objKey
-						}
-					}
-				};
-
-				let rekognition = new AWS.Rekognition();
-				rekognition.detectLabels(params, (err, data) => {
+			bucket
+				.putObject(params)
+				.on('httpUploadProgress', function(progress) {
+					let percent = Math.ceil(progress.loaded / progress.total * 100);
+					loadingProgress(percent);
+				})
+				.send(err => {
 					if (err) {
 						console.error(err);
 
 						return;
 					}
 
-					self.props.labelsLoaded(data);
+					const params = {
+						Image: {
+							S3Object: {
+								Bucket: bucketName,
+								Name: objKey
+							}
+						}
+					};
+
+					let rekognition = new AWS.Rekognition();
+					rekognition.detectLabels(params, (err, data) => {
+						if (err) {
+							console.error(err);
+
+							return;
+						}
+
+						self.props.labelsLoaded(data);
+					});
 				});
-			});
 		};
 
 		const getLoadingBarLabel = () => {
-			if (this.props.labels &&this.props.labels.length) {
+			if (this.props.labels && this.props.labels.length) {
 				return 'Recognized';
 			}
 
@@ -92,8 +95,12 @@ let UploadForm = class extends React.Component {
 
 				<div className="row mb-3 justify-content-center">
 					<div className="d-inline-flex">
-						<Avatar className="col"
-								backgroundColor={this.props.percent === 100 ? themeColor : null}>1/2</Avatar>
+						<Avatar
+							className="col"
+							backgroundColor={this.props.percent === 100 ? themeColor : null}
+						>
+							1/2
+						</Avatar>
 					</div>
 				</div>
 
@@ -101,18 +108,34 @@ let UploadForm = class extends React.Component {
 
 				<div className="row align-items-center mb-4">
 					<div className="col-md-4">
-						<ImagePreview previewSrc={this.props.previewSrc || 'img/image-placeholder.png'}/>
+						<ImagePreview
+							previewSrc={this.props.previewSrc || 'img/image-placeholder.png'}
+						/>
 					</div>
 
 					<div className="col-md-8">
-						<LoadingBar percent={this.props.percent} label={getLoadingBarLabel()}/>
+						<LoadingBar
+							percent={this.props.percent}
+							label={getLoadingBarLabel()}
+						/>
 
 						<form className="form-inline">
-							<input type="file" className="form-control-file col-md-7"
-								accept='image/*'
-								onChange={previewImage}/>
-							<button type="button" className="btn btn-secondary col"
-									disabled={!this.props.file || (this.props.percent > 0 && this.props.percent < 100) || this.props.tagsLoadingProgress} onClick={startUpload}>
+							<input
+								type="file"
+								className="form-control-file col-md-7"
+								accept="image/*"
+								onChange={previewImage}
+							/>
+							<button
+								type="button"
+								className="btn btn-secondary col"
+								disabled={
+									!this.props.file ||
+										(this.props.percent > 0 && this.props.percent < 100) ||
+										this.props.tagsLoadingProgress
+								}
+								onClick={startUpload}
+							>
 								Start
 							</button>
 						</form>
@@ -148,4 +171,4 @@ UploadForm = connect(
 	}
 )(UploadForm);
 
-export {UploadForm};
+export { UploadForm };

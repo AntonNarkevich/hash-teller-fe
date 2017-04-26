@@ -3,7 +3,7 @@
 import actions from './actions.js';
 
 export const signOut = () => {
-	return {type: actions.USER_SIGNED_OUT};
+	return { type: actions.USER_SIGNED_OUT };
 };
 
 export const fileSelected = (previewSrc, file) => {
@@ -36,8 +36,8 @@ export const labelSelectionToggled = (name, isSelected) => {
 	};
 };
 
-export const labelsLoaded = (rekognitionData) => {
-	let labels = rekognitionData.Labels.map(l => ({name: l.Name}));
+export const labelsLoaded = rekognitionData => {
+	let labels = rekognitionData.Labels.map(l => ({ name: l.Name }));
 
 	return {
 		type: actions.LABELS_LOADED,
@@ -45,7 +45,7 @@ export const labelsLoaded = (rekognitionData) => {
 	};
 };
 
-export const tagsLoadingStarted = () =>{
+export const tagsLoadingStarted = () => {
 	return {
 		type: actions.TAGS_LOADING_STARTED
 	};

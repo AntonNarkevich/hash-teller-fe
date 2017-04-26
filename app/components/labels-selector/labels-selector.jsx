@@ -1,13 +1,13 @@
 'use strict';
 
 import React from 'react';
-import {themeColor} from '../../constants.js';
-import {connect} from 'react-redux';
+import { themeColor } from '../../constants.js';
+import { connect } from 'react-redux';
 import * as actionCreators from '../../action-creators.js';
 import Checkbox from 'material-ui/Checkbox';
 import './labels-selector.less';
 import Avatar from 'material-ui/Avatar';
-import {get} from 'lodash';
+import { get } from 'lodash';
 
 //TODO: When to use function and when the class?
 
@@ -19,12 +19,11 @@ let LabelsSelector = ({
 	tagsLoadingStarted,
 	tagsLoadingProgress
 }) => {
-
-	const getSelectedLabels = (labelsArray) => {
+	const getSelectedLabels = labelsArray => {
 		return labelsArray.filter(l => l.isSelected);
 	};
 
-	const getTags = (labelsArray) => {
+	const getTags = labelsArray => {
 		if (!(labelsArray && labelsArray.length)) {
 			throw new Error('Unable to get tags, no labels found');
 		}
@@ -35,68 +34,80 @@ let LabelsSelector = ({
 			throw new Error('No labels selected');
 		}
 
-		let labelsString = selectedProps
-			.map(l => l.name)
-			.join(' ');
+		let labelsString = selectedProps.map(l => l.name).join(' ');
 
 		let lambda = new AWS.Lambda();
 		tagsLoadingStarted();
-		lambda.invoke({
-			FunctionName: 'generate-tags-service-dev-generateTags',
-			Payload: JSON.stringify({labels: labelsString})
-		}, (err, data) => {
-			if (err) {
-				console.error(err);
+		lambda.invoke(
+			{
+				FunctionName: 'generate-tags-service-dev-generateTags',
+				Payload: JSON.stringify({ labels: labelsString })
+			},
+			(err, data) => {
+				if (err) {
+					console.error(err);
 
-				return;
+					return;
+				}
+
+				let generatedTags = JSON.parse(JSON.parse(data.Payload));
+				tagsLoaded(generatedTags);
 			}
-
-			let generatedTags = JSON.parse(JSON.parse(data.Payload));
-			tagsLoaded(generatedTags);
-		});
+		);
 	};
 
 	return (
 		<div className="mb-3">
-			{!!(labels && labels.length) && (
+			{!!(labels && labels.length) &&
 				<div>
 					<div className="row mb-3 justify-content-center">
 						<div className="d-inline-flex">
-							<Avatar className="col"
-									backgroundColor={(tags && tags.length) ? themeColor : null}>2/2</Avatar>
+							<Avatar
+								className="col"
+								backgroundColor={tags && tags.length ? themeColor : null}
+							>
+								2/2
+							</Avatar>
 						</div>
 					</div>
 
-					<h4 className="mb-4">Step 2: Check what applies and hit the button below</h4>
+					<h4 className="mb-4">
+						Step 2: Check what applies and hit the button below
+					</h4>
 
 					<div className="row justify-content-between mb-2">
 						{labels.map((l, index) => (
 							<div className="label-wrap" key={index}>
-								<Checkbox label={l.name}
-										onCheck={() => labelSelectionToggled(l.name, !l.isSelected)}
-										checked={l.isSelected}
-										iconStyle={{fill: themeColor}}/>
+								<Checkbox
+									label={l.name}
+									onCheck={() => labelSelectionToggled(l.name, !l.isSelected)}
+									checked={l.isSelected}
+									iconStyle={{ fill: themeColor }}
+								/>
 							</div>
 						))}
 					</div>
 
 					<div className="row">
 						<div className="col-md-4 offset-md-4">
-							<button type="button" className="btn btn-secondary col"
-									disabled={!getSelectedLabels(labels).length || tagsLoadingProgress}
-									onClick={() => getTags(labels)}>
+							<button
+								type="button"
+								className="btn btn-secondary col"
+								disabled={
+									!getSelectedLabels(labels).length || tagsLoadingProgress
+								}
+								onClick={() => getTags(labels)}
+							>
 
-								{tagsLoadingProgress && (
-									<i className="icon-spin3 animate-spin"></i>
-								)}
+								{tagsLoadingProgress &&
+									<i className="icon-spin3 animate-spin" />}
 
 								<span class="btn btn-primary">Get Tags!</span>
 							</button>
 						</div>
 					</div>
 
-				</div>
-			)}
+				</div>}
 		</div>
 	);
 };
@@ -108,10 +119,11 @@ LabelsSelector = connect(
 		tags: get(state, 'tagsData.tags')
 	}),
 	dispatch => ({
-		labelSelectionToggled: (name, isSelected) => dispatch(actionCreators.labelSelectionToggled(name, isSelected)),
+		labelSelectionToggled: (name, isSelected) =>
+			dispatch(actionCreators.labelSelectionToggled(name, isSelected)),
 		tagsLoaded: tags => dispatch(actionCreators.tagsLoaded(tags)),
 		tagsLoadingStarted: () => dispatch(actionCreators.tagsLoadingStarted())
 	})
 )(LabelsSelector);
 
-export {LabelsSelector};
+export { LabelsSelector };

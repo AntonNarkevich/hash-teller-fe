@@ -4,7 +4,7 @@ import store from './store.js';
 import actions from './actions.js';
 
 export const registerLoginCallback = () => {
-	window.signinCallback = function (authResult) {
+	window.signinCallback = function(authResult) {
 		if (authResult.Zi && authResult.Zi.id_token) {
 			AWS.config.region = 'eu-west-1';
 			// Add the Google access token to the Cognito credentials login map.
@@ -17,7 +17,6 @@ export const registerLoginCallback = () => {
 
 			// Obtain AWS credentials
 			AWS.config.credentials.get(() => {
-
 				store.dispatch({
 					type: actions.USER_SIGNED_IN,
 					user: {

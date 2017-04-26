@@ -1,38 +1,40 @@
 'use strict';
 
 import React from 'react';
-import {GitHubLink} from '../github-link/github-link.jsx';
-import {connect} from 'react-redux';
+import { GitHubLink } from '../github-link/github-link.jsx';
+import { connect } from 'react-redux';
 import * as googleAuth from '../../google-oauth.js';
 import * as actionCreators from '../../action-creators.js';
 
-let GlobalNavigation = ({
-	user,
-	signOut
-}) => {
+let GlobalNavigation = ({ user, signOut }) => {
 	return (
 		<nav className="navbar navbar-toggleable-md navbar-inverse bg-inverse mb-3">
 			<a className="navbar-brand" href="#">
-				<img src="img/logo.png" width="30" height="30" className="d-inline-block align-top" alt=""/>
+				<img
+					src="img/logo.png"
+					width="30"
+					height="30"
+					className="d-inline-block align-top"
+					alt=""
+				/>
 				HashTeller
 			</a>
 
 			<div className="collapse navbar-collapse">
 				<ul className="navbar-nav mr-auto">
 					<li className="nav-item active">
-						<GitHubLink repoName="hash-teller-fe"/>
+						<GitHubLink repoName="hash-teller-fe" />
 					</li>
 				</ul>
-				{user.isSignedIn && (
+				{user.isSignedIn &&
 					<ul className="navbar-nav">
 						<li className="navbar-text navbar-welcome">
 							Welcome, {user.name}!
 						</li>
-						< li className="nav-item">
+						<li className="nav-item">
 							<a className="nav-link" href="#" onClick={signOut}>(Sign out)</a>
 						</li>
-					</ul>
-				)}
+					</ul>}
 			</div>
 		</nav>
 	);
@@ -40,7 +42,7 @@ let GlobalNavigation = ({
 
 GlobalNavigation = connect(
 	state => {
-		return {user: state.user};
+		return { user: state.user };
 	},
 	dispatch => {
 		return {
@@ -52,4 +54,4 @@ GlobalNavigation = connect(
 	}
 )(GlobalNavigation);
 
-export {GlobalNavigation};
+export { GlobalNavigation };

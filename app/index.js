@@ -2,10 +2,10 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
-import {registerLoginCallback} from './google-oauth.js';
+import { Provider } from 'react-redux';
+import { registerLoginCallback } from './google-oauth.js';
 import store from './store.js';
-import {Application} from './components/application/application.jsx';
+import { Application } from './components/application/application.jsx';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
