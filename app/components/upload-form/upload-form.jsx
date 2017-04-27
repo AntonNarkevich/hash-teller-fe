@@ -4,7 +4,6 @@ import React from 'react';
 import { ImagePreview } from './image-preview/image-preview.jsx';
 import { LoadingBar } from './loading-bar/loading-bar.jsx';
 import { connect } from 'react-redux';
-import { get } from 'lodash';
 import * as actionCreators from '../../action-creators.js';
 import './upload-form.less';
 import Avatar from 'material-ui/Avatar';
@@ -79,7 +78,7 @@ let UploadForm = class extends React.Component {
 		};
 
 		const getLoadingBarLabel = () => {
-			if (this.props.labels && this.props.labels.length) {
+			if (this.props.labels && this.props.labels.size) {
 				return 'Recognized';
 			}
 
@@ -149,11 +148,11 @@ let UploadForm = class extends React.Component {
 UploadForm = connect(
 	state => {
 		return {
-			previewSrc: get(state, 'imageData.previewSrc'),
-			tagsLoadingProgress: get(state, 'tagsData.tagsLoadingProgress'),
-			file: get(state, 'imageData.file'),
-			percent: get(state, 'imageData.uploadPercent'),
-			labels: state.labels
+			previewSrc: state.getIn(['imageData', 'previewSrc']),
+			tagsLoadingProgress: state.getIn(['tagsData', 'tagsLoadingProgress']),
+			file: state.getIn(['imageData', 'file']),
+			percent: state.getIn(['imageData', 'uploadPercent']),
+			labels: state.get('labels')
 		};
 	},
 	dispatch => {

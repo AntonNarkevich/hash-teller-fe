@@ -7,9 +7,6 @@ import * as actionCreators from '../../action-creators.js';
 import Checkbox from 'material-ui/Checkbox';
 import './labels-selector.less';
 import Avatar from 'material-ui/Avatar';
-import { get } from 'lodash';
-
-//TODO: When to use function and when the class?
 
 let LabelsSelector = ({
 	labels,
@@ -19,22 +16,22 @@ let LabelsSelector = ({
 	tagsLoadingStarted,
 	tagsLoadingProgress
 }) => {
-	const getSelectedLabels = labelsArray => {
-		return labelsArray.filter(l => l.isSelected);
+	const getSelectedLabels = labelsList => {
+		return labelsList.filter(l => l.get('isSelected'));
 	};
 
-	const getTags = labelsArray => {
-		if (!(labelsArray && labelsArray.length)) {
+	const getTags = labelsList => {
+		if (!(labelsList && labelsList.size)) {
 			throw new Error('Unable to get tags, no labels found');
 		}
 
-		let selectedProps = getSelectedLabels(labelsArray);
+		let selectedProps = getSelectedLabels(labelsList);
 
-		if (!(selectedProps && selectedProps.length)) {
+		if (!(selectedProps && selectedProps.size)) {
 			throw new Error('No labels selected');
 		}
 
-		let labelsString = selectedProps.map(l => l.name).join(' ');
+		let labelsString = selectedProps.map(l => l.get('name')).join(' ');
 
 		let lambda = new AWS.Lambda();
 		tagsLoadingStarted();
@@ -58,13 +55,13 @@ let LabelsSelector = ({
 
 	return (
 		<div className="mb-3">
-			{!!(labels && labels.length) &&
+			{!!(labels && labels.size) &&
 				<div>
 					<div className="row mb-3 justify-content-center">
 						<div className="d-inline-flex">
 							<Avatar
 								className="col"
-								backgroundColor={tags && tags.length ? themeColor : null}
+								backgroundColor={tags && tags.size ? themeColor : null}
 							>
 								2/2
 							</Avatar>
@@ -79,9 +76,10 @@ let LabelsSelector = ({
 						{labels.map((l, index) => (
 							<div className="label-wrap" key={index}>
 								<Checkbox
-									label={l.name}
-									onCheck={() => labelSelectionToggled(l.name, !l.isSelected)}
-									checked={l.isSelected}
+									label={l.get('name')}
+									onCheck={() =>
+										labelSelectionToggled(l.get('name'), !l.get('isSelected'))}
+									checked={l.get('isSelected')}
 									iconStyle={{ fill: themeColor }}
 								/>
 							</div>
@@ -94,7 +92,7 @@ let LabelsSelector = ({
 								type="button"
 								className="btn btn-secondary col"
 								disabled={
-									!getSelectedLabels(labels).length || tagsLoadingProgress
+									!getSelectedLabels(labels).size || tagsLoadingProgress
 								}
 								onClick={() => getTags(labels)}
 							>
@@ -102,7 +100,7 @@ let LabelsSelector = ({
 								{tagsLoadingProgress &&
 									<i className="icon-spin3 animate-spin" />}
 
-								<span class="btn btn-primary">Get Tags!</span>
+								<span>Get Tags!</span>
 							</button>
 						</div>
 					</div>
@@ -114,9 +112,9 @@ let LabelsSelector = ({
 
 LabelsSelector = connect(
 	state => ({
-		labels: state.labels,
-		tagsLoadingProgress: get(state, 'tagsData.tagsLoadingProgress'),
-		tags: get(state, 'tagsData.tags')
+		labels: state.get('labels'),
+		tagsLoadingProgress: state.getIn(['tagsData', 'tagsLoadingProgress']),
+		tags: state.getIn(['tagsData', 'tags'])
 	}),
 	dispatch => ({
 		labelSelectionToggled: (name, isSelected) =>

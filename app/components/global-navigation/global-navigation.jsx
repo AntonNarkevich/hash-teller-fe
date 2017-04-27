@@ -26,10 +26,10 @@ let GlobalNavigation = ({ user, signOut }) => {
 						<GitHubLink repoName="hash-teller-fe" />
 					</li>
 				</ul>
-				{user.isSignedIn &&
+				{user.get('isSignedIn') &&
 					<ul className="navbar-nav">
 						<li className="navbar-text navbar-welcome">
-							Welcome, {user.name}!
+							Welcome, {user.get('name')}!
 						</li>
 						<li className="nav-item">
 							<a className="nav-link" href="#" onClick={signOut}>(Sign out)</a>
@@ -42,7 +42,7 @@ let GlobalNavigation = ({ user, signOut }) => {
 
 GlobalNavigation = connect(
 	state => {
-		return { user: state.user };
+		return { user: state.get('user') };
 	},
 	dispatch => {
 		return {

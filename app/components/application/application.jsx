@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { get } from 'lodash';
 import { GlobalNavigation } from '../global-navigation/global-navigation.jsx';
 import { GlobalFooter } from '../global-footer/global-footer.jsx';
 import { SignIn } from '../signin/signin.jsx';
@@ -23,15 +22,15 @@ let Application = ({ user, tags }) => {
 				<div className="col-md-8 offset-md-2">
 					<HeroUnit />
 
-					<SignIn className={user.isSignedIn ? 'hidden-xl-down' : ''} />
+					<SignIn className={user.get('isSignedIn') ? 'hidden-xl-down' : ''} />
 
-					{user.isSignedIn &&
+					{user.get('isSignedIn') &&
 						<div className="row">
 							<UploadForm />
 
 							<LabelsSelector />
 
-							{!!(tags && tags.length) && <TagsOutput tags={tags} />}
+							{!!(tags && tags.size) && <TagsOutput tags={tags} />}
 						</div>}
 				</div>
 			</div>
@@ -46,8 +45,8 @@ let Application = ({ user, tags }) => {
 
 Application = connect(state => {
 	return {
-		user: state.user,
-		tags: get(state, 'tagsData.tags')
+		user: state.get('user'),
+		tags: state.getIn(['tagsData', 'tags'])
 	};
 })(Application);
 

@@ -1,31 +1,24 @@
 'use strict';
 
-import { cloneDeep, take, forEach } from 'lodash';
 import actions from '../actions.js';
+import Immutable, { List } from 'immutable';
 
-export const labels = (state = [], action) => {
+export default (state = new List(), action) => {
 	switch (action.type) {
 		case actions.LABELS_LOADED: {
-			let labels = cloneDeep(action.labels);
+			return Immutable.fromJS(action.labels).map((label, index) => {
+				if (index < 4) {
+					return label.set('isSelected', true);
+				}
 
-			//Select first 3 by default
-			forEach(take(labels, 4), l => {
-				l.isSelected = true;
+				return label;
 			});
-
-			return labels;
 		}
 
 		case actions.LABEL_SELECTED_TOGGLED: {
-			let labelIndex = state.findIndex(l => l.name === action.name);
+			let labelIndex = state.findIndex(l => l.get('name') === action.name);
 			if (labelIndex !== -1) {
-				let label = state[labelIndex];
-
-				return [
-					...state.slice(0, labelIndex),
-					Object.assign({}, label, { isSelected: action.isSelected }),
-					...state.slice(labelIndex + 1)
-				];
+				return state.setIn([labelIndex, 'isSelected'], action.isSelected);
 			}
 
 			return state;
@@ -33,7 +26,7 @@ export const labels = (state = [], action) => {
 
 		case actions.FILE_UPLOADING_PROGRESS:
 		case actions.USER_SIGNED_OUT:
-			return {};
+			return new List();
 
 		default:
 			return state;
