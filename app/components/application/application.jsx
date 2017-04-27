@@ -1,6 +1,6 @@
 'use strict';
 
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { GlobalNavigation } from '../global-navigation/global-navigation.jsx';
 import { GlobalFooter } from '../global-footer/global-footer.jsx';
@@ -13,34 +13,40 @@ import { LabelsSelector } from '../labels-selector/labels-selector.jsx';
 
 import './application.less';
 
-let Application = ({ user, tags }) => {
-	return (
-		<div className="container">
-			<GlobalNavigation />
+let Application = class extends PureComponent {
+	render() {
+		const { user, tags } = this.props;
 
-			<div className="jumbotron jumbotron-fluid content-wrap">
-				<div className="col-md-8 offset-md-2">
-					<HeroUnit />
+		return (
+			<div className="container">
+				<GlobalNavigation />
 
-					<SignIn className={user.get('isSignedIn') ? 'hidden-xl-down' : ''} />
+				<div className="jumbotron jumbotron-fluid content-wrap">
+					<div className="col-md-8 offset-md-2">
+						<HeroUnit />
 
-					{user.get('isSignedIn') &&
-						<div className="row">
-							<UploadForm />
+						<SignIn
+							className={user.get('isSignedIn') ? 'hidden-xl-down' : ''}
+						/>
 
-							<LabelsSelector />
+						{user.get('isSignedIn') &&
+							<div className="row">
+								<UploadForm />
 
-							{!!(tags && tags.size) && <TagsOutput tags={tags} />}
-						</div>}
+								<LabelsSelector />
+
+								{!!(tags && tags.size) && <TagsOutput tags={tags} />}
+							</div>}
+					</div>
 				</div>
-			</div>
 
-			<GlobalFooter
-				contactEmail="antonio.narkevich@gmail.com"
-				contactName="Antonio Narkevich"
-			/>
-		</div>
-	);
+				<GlobalFooter
+					contactEmail="antonio.narkevich@gmail.com"
+					contactName="Antonio Narkevich"
+				/>
+			</div>
+		);
+	}
 };
 
 Application = connect(state => {

@@ -1,8 +1,9 @@
 'use strict';
 
 import React from 'react';
+import { PureComponent } from 'react';
 
-export class GitHubLink extends React.Component {
+export class GitHubLink extends PureComponent {
 	render() {
 		return (
 			<a

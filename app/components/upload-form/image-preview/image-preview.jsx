@@ -1,8 +1,8 @@
 'use strict';
 
-import React from 'react';
+import React, { PureComponent } from 'react';
 
-export class ImagePreview extends React.Component {
+export class ImagePreview extends PureComponent {
 	render() {
 		return (
 			<img

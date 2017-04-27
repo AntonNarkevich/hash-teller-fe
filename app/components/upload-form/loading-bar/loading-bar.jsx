@@ -1,10 +1,10 @@
 'use strict';
 
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { isNumber } from 'lodash';
 import './loading-bar.less';
 
-export class LoadingBar extends React.Component {
+export class LoadingBar extends PureComponent {
 	render() {
 		return (
 			<div className="progress mb-2">

@@ -1,6 +1,6 @@
 'use strict';
 
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { ImagePreview } from './image-preview/image-preview.jsx';
 import { LoadingBar } from './loading-bar/loading-bar.jsx';
 import { connect } from 'react-redux';
@@ -9,7 +9,7 @@ import './upload-form.less';
 import Avatar from 'material-ui/Avatar';
 import { themeColor } from '../../constants.js';
 
-let UploadForm = class extends React.Component {
+let UploadForm = class extends PureComponent {
 	render() {
 		const self = this;
 

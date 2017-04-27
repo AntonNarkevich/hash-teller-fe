@@ -1,8 +1,8 @@
 'use strict';
 
-import React from 'react';
+import React, { PureComponent } from 'react';
 
-export class GlobalFooter extends React.Component {
+export class GlobalFooter extends PureComponent {
 	render() {
 		return (
 			<div className="row">
