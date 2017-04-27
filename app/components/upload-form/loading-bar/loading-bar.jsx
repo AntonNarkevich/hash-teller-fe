@@ -1,7 +1,6 @@
 'use strict';
 
 import React, { PureComponent } from 'react';
-import { isNumber } from 'lodash';
 import './loading-bar.less';
 
 export class LoadingBar extends PureComponent {
@@ -14,7 +13,7 @@ export class LoadingBar extends PureComponent {
 					style={{ width: `${this.props.percent || 0}%` }}
 				>
 
-					{isNumber(this.props.percent) &&
+					{Number.isInteger(this.props.percent) &&
 						this.props.percent !== 0 &&
 						<span>{this.props.label || `${this.props.percent}%`}</span>}
 				</div>

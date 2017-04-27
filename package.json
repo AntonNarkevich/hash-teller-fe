@@ -1,6 +1,6 @@
 {
   "name": "hash-teller-fe",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Frontend part of a hash-teller project flex",
   "main": "index.html",
   "scripts": {
@@ -47,7 +47,6 @@
     "immutable": "^3.8.1",
     "less": "^2.7.2",
     "less-loader": "^4.0.3",
-    "lodash": "^4.17.4",
     "material-ui": "^0.17.4",
     "prettier": "^1.2.2",
     "react": "^15.5.4",
