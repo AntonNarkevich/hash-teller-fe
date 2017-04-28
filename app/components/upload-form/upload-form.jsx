@@ -5,6 +5,7 @@ import { ImagePreview } from './image-preview/image-preview.jsx';
 import { LoadingBar } from './loading-bar/loading-bar.jsx';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../action-creators.js';
+import { loadingProgress, labelsLoaded } from '../../action-creators.js';
 import './upload-form.less';
 import Avatar from 'material-ui/Avatar';
 import { themeColor } from '../../constants.js';
@@ -155,18 +156,10 @@ UploadForm = connect(
 			labels: state.get('labels')
 		};
 	},
-	dispatch => {
-		return {
-			previewImageChanged: (src, file) => {
-				dispatch(actionCreators.fileSelected(src, file));
-			},
-			loadingProgress: percent => {
-				dispatch(actionCreators.loadingProgress(percent));
-			},
-			labelsLoaded: rekognitionData => {
-				dispatch(actionCreators.labelsLoaded(rekognitionData));
-			}
-		};
+	{
+		previewImageChanged: actionCreators.fileSelected,
+		loadingProgress,
+		labelsLoaded
 	}
 )(UploadForm);
 

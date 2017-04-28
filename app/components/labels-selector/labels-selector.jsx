@@ -3,7 +3,11 @@
 import React, { PureComponent } from 'react';
 import { themeColor } from '../../constants.js';
 import { connect } from 'react-redux';
-import * as actionCreators from '../../action-creators.js';
+import {
+	labelSelectionToggled,
+	tagsLoaded,
+	tagsLoadingStarted
+} from '../../action-creators.js';
 import Checkbox from 'material-ui/Checkbox';
 import './labels-selector.less';
 import Avatar from 'material-ui/Avatar';
@@ -127,12 +131,11 @@ LabelsSelector = connect(
 		tagsLoadingProgress: state.getIn(['tagsData', 'tagsLoadingProgress']),
 		tags: state.getIn(['tagsData', 'tags'])
 	}),
-	dispatch => ({
-		labelSelectionToggled: (name, isSelected) =>
-			dispatch(actionCreators.labelSelectionToggled(name, isSelected)),
-		tagsLoaded: tags => dispatch(actionCreators.tagsLoaded(tags)),
-		tagsLoadingStarted: () => dispatch(actionCreators.tagsLoadingStarted())
-	})
+	{
+		labelSelectionToggled,
+		tagsLoaded,
+		tagsLoadingStarted
+	}
 )(LabelsSelector);
 
 export { LabelsSelector };
